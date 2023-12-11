@@ -1,1 +1,26 @@
 //  Add your code here
+const mongoose = require('mongoose');
+
+const celebritySchema = new mongoose.Schema({
+    name: {
+      type: String,
+      required: true
+    },
+    occupation: {
+      type: String,
+      required: true
+    },
+    catchPhrase: {
+      type: String,
+      required: true
+    }
+  });
+
+
+// Create the model from the schema
+
+const Celebrity = mongoose.model('Celebrity', celebritySchema);
+
+
+// Export the Celebrity model
+module.exports = Celebrity;
