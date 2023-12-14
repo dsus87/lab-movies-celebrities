@@ -15,8 +15,8 @@ const movieSchema = new mongoose.Schema({
       required: true
     },
     cast: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Celebrity' // This should match the name you gave your Celebrity model
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Celebrity'
       }]
   });
 

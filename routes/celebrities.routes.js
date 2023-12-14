@@ -1,11 +1,9 @@
 const express = require('express');
 const Celebrity = require('../models/Celebrity.model')
+const Movie = require('../models/Movie.model')
 
 // starter code in both routes/celebrities.routes.js and routes/movies.routes.js
 const router = require("express").Router();
-
-// all your routes here
-const Celebrity = require('../models/Celebrity.model');
 
 // Route to show the form for creating a new celebrity
 router.get('/celebrities/create', (req, res) => {
