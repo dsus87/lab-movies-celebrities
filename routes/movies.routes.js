@@ -44,3 +44,48 @@ router.post('/movies/create', (req, res) => {
       .catch(err => console.error(err));
   });
   
+
+// Display movie details
+
+router.get('/movies/:id', (req, res, next) => {
+  Movie.findById(req.params.id)
+    .populate('cast')
+    .then(movie => {
+      res.render('movies/movie-details', { movie });
+    })
+    .catch(err => console.error(err));
+});
+
+module.exports = router;
+
+
+// Delete movie
+
+router.post('/movies/:id/delete', (req, res, next) => {
+  // Delete the movie
+  Movie.findByIdAndDelete(req.params.id)
+      .then(() => res.redirect('/movies')) 
+      .catch(err => console.error(err));
+});
+
+//Edit Movies GET
+
+router.get('/movies/:id/edit', (req, res, next) => {
+  Movie.findById(req.params.id)
+    .then(foundMovie => {
+      console.log('foundMovie', foundMovie);
+      res.render('movies/edit-movie', { movie: foundMovie });
+    })
+    .catch(err => console.error(err));
+});
+
+// Edit Movies POST
+
+router.post('/movies/:id/edit', (req, res, next) => {
+  console.log('req.body', req.body);
+  const { title, genre, plot, cast } = req.body;
+
+  Movie.findByIdAndUpdate(req.params.id, { title, genre, plot, cast })
+    .then(() => res.redirect(`/movies/${req.params.id}`))
+    .catch(err => console.error(err));
+});
