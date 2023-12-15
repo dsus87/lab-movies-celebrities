@@ -32,3 +32,15 @@ router.post('/movies/create', (req, res) => {
         res.render('movies/new-movie', { errorMessage: 'Error creating a new movie' });
       });
   });
+
+
+  // GET Route for all movies 
+
+  router.get('/movies', (req, res, next) => {
+    Movie.find()
+      .then(allMovies => {
+        res.render('movies/movies', { movies: allMovies });
+      })
+      .catch(err => console.error(err));
+  });
+  
